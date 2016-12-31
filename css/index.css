@@ -1,0 +1,33 @@
+.feature-icon {
+    font-size: 44px;
+    padding:0;
+    line-height:68px;
+    width:72px;
+    text-align: center;
+    opacity: .8;
+    border: 2px solid;
+    border-radius: 200px;
+    height: 72px;
+    margin-bottom:20px;
+}
+.list-group{
+    margin: 0;
+}
+.feature-icon.fa-gamepad,.feature-icon.fa-tachometer {
+    line-height: 60px;
+}
+
+.list-group-item-home{
+    padding: 20px;
+
+}
+
+.list-group-item p{
+    color: #abb0bc;
+    font-size: 14px;
+    margin-left: 20px;
+}
+.price span{
+    font-size: 16px;
+    color: #eb2324;
+}

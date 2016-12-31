@@ -1,0 +1,62 @@
+<div ui-content-for="title">
+    <span>iPhone7</span>
+</div>
+<div class="scrollable">
+    <div class="scrollable-content">
+        <div class="list-group" ng-controller="getmodel">
+            <div class="list-group-item text-center">
+                <img src="resource/img/iphone7.png">
+            </div>
+            <div class="list-group-item">
+                <p>名称：<span>{{model.name}}</span></p>
+                <p class="price">价格：<span ng-repeat="x in model.price">{{ x }}元 </span></p>
+            </div>
+        </div>
+        <div class="list-group text-center">
+            <div class="list-group-item list-group-item-home">
+                <h1>Mobile Angular UI Demo <small>1.3</small></h1>
+            </div>
+            <div class="list-group-item list-group-item-home">
+                <div>
+                    <i class="fa fa-gamepad feature-icon text-primary"></i>
+                </div>
+                <div>
+                    <h3 class="home-heading">Play around a little</h3>
+                    open the sidebar and start testing features
+                </div>
+            </div>
+
+            <div class="list-group-item list-group-item-home">
+                <div>
+                    <i class="fa fa-tachometer feature-icon text-primary"></i>
+                </div>
+                <div>
+                    <h3 class="home-heading">Test responseiveness and speed</h3>
+                    Scroll, tap, navigate, test that everything is smooth
+                </div>
+            </div>
+
+            <div class="list-group-item list-group-item-home">
+                <div><i class="fa fa-expand feature-icon text-primary"></i> </div>
+                <div>
+                    <h3 class="home-heading">Resize your browser</h3>
+                    Stretch and squeeze your browser window to see both mobile and desktop versions.
+                </div>
+            </div>
+
+            <div class="list-group-item list-group-item-home">
+                <div>
+                    <i class="fa fa-stethoscope feature-icon text-primary"></i>
+                </div>
+                <div>
+                    <h3 class="home-heading">Submit an issue</h3>
+                    <p>Please submit any issue you'll find, <a href="README.md" id="#home-report">reporting</a> your user agent string:<br> </p>
+                    <pre>{{userAgent}}</pre>
+                </div>
+                <div>
+                    <span><a href="">{{email}}</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
