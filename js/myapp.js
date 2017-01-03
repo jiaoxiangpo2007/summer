@@ -16,6 +16,7 @@ app.run(function ($transform) {
 
 app.config(function ($routeProvider) {
     $routeProvider.when('/', {templateUrl: 'home.html', reloadOnSearch: false});
+    $routeProvider.when('/:id', {templateUrl: 'details.html',controller: 'getModel', reloadOnSearch: false});
     $routeProvider.when('/scroll', {templateUrl: 'scroll.html', reloadOnSearch: false});
     $routeProvider.when('/toggle', {templateUrl: 'toggle.html', reloadOnSearch: false});
     $routeProvider.when('/tabs', {templateUrl: 'tabs.html', reloadOnSearch: false});
@@ -260,13 +261,20 @@ app.controller('MainController',function ($rootScope, $scope) {
     };
 });
 
-app.controller('getmodel', function ($scope, $http) {
-    $http.get("resource/iphone7.json")
-        .then(function (response) {$scope.model = response.data;},function (response) {
-            if (response.status == 404){
-                alert("对不起，您访问的手机不存在！我们已经在完善信息。");
-            } else{
-                alert("系统出现故障");
-            }
-        });
+app.controller('getModel', function ($scope, $http, $routeParams) {
+    if ($routeParams.id) {
+        $http.get("resource/" + $routeParams.id + ".json")
+            .then(function (response) {
+                $scope.model = response.data;
+            }, function (response) {
+                if (response.status == 404) {
+                    alert("对不起，您访问的手机不存在！我们已经在完善信息。");
+                    return false;
+                } else {
+                    alert("系统出现故障");
+                }
+            });
+    } else {
+        alert("没有id");
+    }
 });

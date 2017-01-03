@@ -1,0 +1,21 @@
+<div ng-controller="getModel">
+    <div ui-content-for="title">
+        <span>{{model.name}}</span>
+    </div>
+    <div class="scrollable">
+        <div class="scrollable-content">
+            <div class="list-group">
+                <div class="list-group-item text-center">
+                    <img src="{{model.pic}}" alt="{{model.name}}">
+                </div>
+                <div class="list-group-item">
+                    <p style="font-size: 16px;"> {{model.name}} </p>
+                    <p class="price">价格：<span ng-repeat="x in model.price">{{ x }}元 </span></p>
+                </div>
+            </div>
+            <div class="list-group">
+                <div class="list-group-item"></div>
+            </div>
+        </div>
+    </div>
+</div>
