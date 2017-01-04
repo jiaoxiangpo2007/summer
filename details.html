@@ -6,7 +6,7 @@
         <div class="scrollable-content">
             <div class="list-group">
                 <div class="list-group-item text-center">
-                    <img src="{{model.pic}}" alt="{{model.name}}">
+                    <img src="{{model.pic}}" alt="{{model.name }}">
                 </div>
                 <div class="list-group-item">
                     <p style="font-size: 16px;"> {{model.name}} </p>
@@ -15,18 +15,82 @@
             </div>
             <div class="list-group">
                 <div class="list-group-item">
-                    <h4>外观</h4>
+                    <p class="modeltop">外观</p>
                     <p>长度：{{model.body.lan}} mm</p>
                     <p>宽度：{{model.body.wid}} mm</p>
                     <p>厚度：{{model.body.hig}} mm</p>
                     <p>重量：{{model.body.kg}} g</p>
                 </div>
                 <div class="list-group-item">
-                    <h4>屏幕</h4>
+                    <p class="modeltop">屏幕</p>
                     <p>尺寸：{{model.screen.size}} 英寸</p>
                     <p>分辨率：{{model.screen.pixel}}</p>
                     <p>PPI：{{model.screen.ppi}}</p>
                     <p>屏幕材质：{{model.screen.material}}</p>
+                </div>
+                <div class="list-group-item">
+                    <p class="modeltop">主摄像头</p>
+                    <p>像素：{{model.fcamera.pix}} MP</p>
+                    <p>光圈大小：{{model.fcamera.gq}} 光圈</p>
+                    <p>光学防抖：{{model.fcamera.gxfd}}</p>
+                    <p>闪光灯：{{model.fcamera.lig}}</p>
+                    <p>感光元件：{{model.fcamera.ggyj}}</p>
+                </div>
+                <div class="list-group-item">
+                    <p class="modeltop">前置摄像头</p>
+                    <p>像素：{{model.bcameta.pix}} MP</p>
+                    <p>光圈大小：{{model.bcameta.gq}} 光圈</p>
+                </div>
+                <div class="list-group-item">
+                    <p class="modeltop">处理器与内存</p>
+                    <p>CPU：{{model.cpu.cpu}}</p>
+                    <p>GPU：{{model.cpu.gpu}}</p>
+                    <p>RAM：{{model.cpu.ram}}</p>
+                    <p>ROM：{{model.cpu.ROM}}</p>
+                </div>
+                <div class="list-group-item">
+                    <p class="modeltop">电池</p>
+                    <p>电池容量：{{model.battery[0]}} mAh</p>
+                    <p>快速充电：{{model.battery[1]}}</p>
+                </div>
+                <div class="list-group-item">
+                    <p class="modeltop">SIM 卡1</p>
+                        <p>规格：{{model.sim.sim}}</p>
+                    <div style="height: 60px">
+                        <p style="float: left">网络制式：</p>
+                        <p style="float: left;margin-left: 5px">{{model.sim.cellular[0]}}<br /> {{model.sim.cellular[1]}} <br>{{model.sim.cellular[2]}}</p>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <p class="modeltop">SIM 卡2</p>
+                </div>
+                <div class="list-group-item">
+                    <p class="modeltop">WLAN</p>
+                    <p>{{model.wlan}}</p>
+                </div>
+                <div class="list-group-item">
+                    <p class="modeltop">NFC</p>
+                    <p>{{model.nfc}}</p>
+                </div>
+                <div class="list-group-item">
+                    <p class="modeltop">蓝牙</p>
+                    <p>{{model.bluetooth}}</p>
+                </div>
+                <div class="list-group-item">
+                    <p class="modeltop">NFC</p>
+                    <p>{{model.nfc}}</p>
+                </div>
+                <div class="list-group-item">
+                    <p class="modeltop">传感器</p>
+                    <p ng-repeat="x in model.senssor">{{x}}</p>
+                </div>
+                <div class="list-group-item">
+                    <p class="modeltop">指纹识别</p>
+                    <p >{{model.fingerprint}}</p>
+                </div>
+                <div class="list-group-item">
+                    <p class="modeltop">数据接口</p>
+                    <p >{{model.port}}</p>
                 </div>
             </div>
         </div>
