@@ -12,6 +12,7 @@
 }
 .list-group{
     margin: 0;
+    background-color: #fff;
 }
 .feature-icon.fa-gamepad,.feature-icon.fa-tachometer {
     line-height: 60px;
@@ -30,4 +31,14 @@
 .price span{
     font-size: 16px;
     color: #eb2324;
+}
+
+.model-title{
+    font-size: 13px;
+    padding: 5px 10px;
+    background-color: #fff;
+    border: 0px hidden;
+}
+.list-group-item > h4{
+    color: #007aff;
 }
