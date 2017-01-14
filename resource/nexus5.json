@@ -1,0 +1,19 @@
+{
+  "name":"Nexus 5",
+  "price":["5299","5288"],
+  "model":["A1660","A1661","A1778","A1784"],
+  "pic":"resource/img/iphone7.png",
+  "body":{"lan":"138.30", "wid":"67.10" ,"hig":"7.10","kg":"138"},
+  "screen":{"size":"4.70","pixel":"1920x1080","ppi":"326","material":"LCD"},
+  "fcamera":{"pix":"1200","gq":"f/1.8","gxfd":"支持","lig":"四颗双色温闪光灯","ggyj":"背照式 CMOS"},
+  "bcameta":{"pix":"700","gq":"f/2.2"},
+  "cpu":{"cpu":"苹果 A10 Fusion（64位 四核 2.3GHz）","gpu":"","ram":"2GB","ROM":"32GB/128GB/256GB"},
+  "battery":["1960","不支持"],
+  "sim":{"sim":"Nano-SIM","cellular":["移动 2G/4G","联通 2G/3G/4G","电信 2G/3G/4G"]},
+  "wlan":"支持 2.4GHz/5GHz",
+  "nfc":"支持",
+  "bluetooth":"Bluetooth 4.2",
+  "senssor":["三轴陀螺仪","加速传感器","距离感应器","环境光传感器","气压计"],
+  "fingerprint":"Home键 ",
+  "port":"MicroUSB"
+}

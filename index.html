@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="MobileAngularUiExamples" ng-controller="MainController" ui-prevent-touchmove-defaults>
+<html lang="en" ng-app="MobileAngularUiExamples" ng-controller="MainController" ui-prevent-touchmove-defaults >
 <head>
     <meta charset="UTF-8">
     <!--<base href="/Summer/">-->
@@ -12,13 +12,14 @@
     <script src="node_modules/mobile-angular-ui/dist/js/mobile-angular-ui.min.js"></script>
     <script src="node_modules/mobile-angular-ui/dist/js/mobile-angular-ui.gestures.min.js"></script>
 </head>
-<body>
-<div ng-include="sidebar.html" class="sidebar sidebar-left" ui-track-as-search-param="true"></div>
-<div ng-include="sidebarRight.html" class="sidebar sidebar-right"></div>
 
-<div class="app" ui-swipe-right="Ui.turnOn('uiSidebarLeft')" ui-swipe-left="Ui.turnOff('uiSidebarLeft')">
+<body >
+<div ng-include="'sidebar.html'" class="sidebar sidebar-left" ></div>
+<div ng-include="'sidebarRight.html'" class="sidebar sidebar-right"></div>
+
+<div class="app" ui-swipe-right="Ui.turnOn('uiSidebarLeft')" ui-swipe-left="Ui.turnOff('uiSidebarLeft')" >
     <div class="navbar navbar-app navbar-absolute-top">
-        <div class="navbar-brand navbar-brand-center" ui-yield-to="title">Summer</div>
+        <div class="navbar-brand navbar-brand-center" ui-yield-to="title" >Summer</div>
         <div class="btn-group pull-left">
             <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle">
                 <i class="fa fa-bars"></i> Menu
@@ -39,6 +40,6 @@
         </div>
     </div>
 </div>
-<script src="js/myapp.js"></script>
+<script src="js/myapp.js?213"></script>
 </body>
 </html>

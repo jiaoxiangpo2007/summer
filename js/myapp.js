@@ -14,9 +14,9 @@ app.run(function ($transform) {
     window.$transform = $transform;
 });
 
-app.config(function ($routeProvider) {
+app.config(function($routeProvider) {
     $routeProvider.when('/', {templateUrl: 'home.html', reloadOnSearch: false});
-    $routeProvider.when('/:id', {templateUrl: 'details.html',controller: 'getModel', reloadOnSearch: false});
+    $routeProvider.when('/details/:id', {templateUrl: 'details.html', reloadOnSearch: false});
     $routeProvider.when('/scroll', {templateUrl: 'scroll.html', reloadOnSearch: false});
     $routeProvider.when('/toggle', {templateUrl: 'toggle.html', reloadOnSearch: false});
     $routeProvider.when('/tabs', {templateUrl: 'tabs.html', reloadOnSearch: false});
@@ -25,72 +25,79 @@ app.config(function ($routeProvider) {
     $routeProvider.when('/forms', {templateUrl: 'forms.html', reloadOnSearch: false});
 });
 
-app.directive('toucharea',['$touch', function ($touch) {
-    return {
-        restric: 'C',
-        link: function ($scope, elem) {
-            $scope.touch = null;
-            $touch.bind(elem, {
-                start: function (touch) {
-                  $scope.containerRect = elem[0].getBoundingClientRect();
-                  $scope.touch = touch;
-                  $scope.$apply();
-                },
-                cancel: function (touch) {
-                    $scope.touch = touch;
-                    $scope.$apply();
-                },
-                move: function (touch) {
-                    $scope.touch = touch;
-                    $scope.$apply();
-                },
-                end: function (touch) {
-                    $scope.touch = touch;
-                    $scope.$apply();
-                }
-            });
+app.directive('toucharea', ['$touch', function($touch) {
+  // Runs during compile
+  return {
+    restrict: 'C',
+    link: function($scope, elem) {
+      $scope.touch = null;
+      $touch.bind(elem, {
+        start: function(touch) {
+          $scope.containerRect = elem[0].getBoundingClientRect();
+          $scope.touch = touch;
+          $scope.$apply();
+        },
+
+        cancel: function(touch) {
+          $scope.touch = touch;
+          $scope.$apply();
+        },
+
+        move: function(touch) {
+          $scope.touch = touch;
+          $scope.$apply();
+        },
+
+        end: function(touch) {
+          $scope.touch = touch;
+          $scope.$apply();
         }
-    };
+      });
+    }
+  };
 }]);
 
-app.directive('dragToDismiss', function ($drag, $parse, $timeout) {
-    return{
-        restric: 'A',
-        compile: function (elem, attrs) {
-            var dismissFn = $parse(attrs,dragToDismiss);
-            return function (scope, elem) {
-                var dismiss = false;
-                
-                $drag.bind(elem, {
-                    transform: $drag.TRANSLATE_RIGHT,
-                    move: function (drag) {
-                        if (drag.distanceX >= drag.rect.wodth / 4){
-                            dismiss = true;
-                            elem.addClass('dismiss');
-                        } else {
-                            dismiss = false;
-                            elem.removeClass('dismiss');
-                        }
-                    },
-                    cancel: function () {
-                        elem.removeClass('dismiss');
-                    },
-                    end: function (drag) {
-                        if (dismiss){
-                            elem.addClass('dismitted');
-                            $timeout(function () {
-                                scope.$apply(function () {
-                                    dismissFn(scope);
-                                });
-                            }, 300);
-                        } else {
-                            drag.reset();
-                        }
-                    }
+//
+// `$drag` example: drag to dismiss
+//
+app.directive('dragToDismiss', function($drag, $parse, $timeout) {
+  return {
+    restrict: 'A',
+    compile: function(elem, attrs) {
+      var dismissFn = $parse(attrs.dragToDismiss);
+      return function(scope, elem) {
+        var dismiss = false;
+
+        $drag.bind(elem, {
+          transform: $drag.TRANSLATE_RIGHT,
+          move: function(drag) {
+            if (drag.distanceX >= drag.rect.width / 4) {
+              dismiss = true;
+              elem.addClass('dismiss');
+            } else {
+              dismiss = false;
+              elem.removeClass('dismiss');
+            }
+          },
+          cancel: function() {
+            elem.removeClass('dismiss');
+          },
+          end: function(drag) {
+            if (dismiss) {
+              elem.addClass('dismitted');
+              $timeout(function() {
+                scope.$apply(function() {
+                  dismissFn(scope);
                 });
-            };
-        }
-    };
+              }, 300);
+            } else {
+              drag.reset();
+            }
+          }
+        });
+      };
+    }
+  };
 });
 
 app.directive('carousel', function () {
@@ -102,36 +109,36 @@ app.directive('carousel', function () {
             this.activeItem = null;
 
             this.addItem = function () {
-                var newID = this.itemCount++;
-                this.activeItem = this.itemCount == 1 ? newId : this.activeItem;
+                var newId = this.itemCount++;
+                this.activeItem = this.itemCount === 1 ? newId : this.activeItem;
                 return newId;
             };
 
             this.next =function () {
                 this.activeItem = this.activeItem || 0;
-                this.activeItem = this.activeItem == this.itemCount -1 ? 0 : this.activeItem + 1;
+                this.activeItem = this.activeItem === this.itemCount - 1 ? 0 : this.activeItem + 1;
             };
 
             this.prev = function () {
                 this.activeItem = this.activeItem || 0;
-                this.activeItem = this.activeItem == 0 ? this.itemCount -1 : this.activeItem - 1;
+                this.activeItem = this.activeItem === 0 ? this.itemCount - 1 : this.activeItem - 1;
             };
         }
     };
 });
 
-app.directive('carouselItem', function ($drag) {
-    return {
-        restrict: 'C',
-        require: '^carousel',
-        scope: {},
-        translude: true,
-        template: '<div class="item"><div ng-transclude></div></div> ',
-        link: function (scope, elem, attrs, carousel) {
-            scope.carousel = carousel;
-            var id = carousel.addItem();
+app.directive('carouselItem', function($drag) {
+  return {
+    restrict: 'C',
+    require: '^carousel',
+    scope: {},
+    transclude: true,
+    template: '<div class="item"><div ng-transclude></div></div>',
+    link: function(scope, elem, attrs, carousel) {
+      scope.carousel = carousel;
+      var id = carousel.addItem();
 
-            var zIndex = function () {
+            var zIndex = function() {
                 var res = 0;
                 if (id == carousel.activeItem){
                     res = 2000;
@@ -156,7 +163,7 @@ app.directive('carouselItem', function ($drag) {
                     var Dx = touch.distanceX;
                     var t0 = touch.startTransform;
                     var sign = Dx < 0 ? -1 : 1;
-                    var angle = sign * Math.min((Math.abs(Dx) /700) * 30, 30);
+                    var angle = sign * Math.min((Math.abs(Dx) / 700) * 30, 30);
 
                     t.rotateZ = angle + (Math.round(t0.rotateZ));
 
@@ -174,7 +181,7 @@ app.directive('carouselItem', function ($drag) {
                 },
                 end: function (drag) {
                     elem.removeClass('dismiss');
-                    if (Math.abs(drag.distanceX) >= drag.rect.width / 4){
+                    if (Math.abs(drag.distanceX) >= drag.rect.width / 4) {
                         scope.$apply(function () {
                             carousel.next();
                         });
@@ -203,29 +210,44 @@ app.directive('dragMe', ['$drag', function ($drag) {
     }
 }]);
 
-app.controller('MainController',function ($rootScope, $scope) {
-    $scope.swiped = function (direction) {
-        alert('Swiped ' + direction);
-    };
-    $scope.userAgent = navigator.userAgent;
+//
+// For this trivial demo we have just a unique MainController
+// for everything
+//
+app.controller('MainController', function($rootScope, $scope) {
 
-    $scope.$on('$routeChangeStart', function () {
-        $rootScope.loading = false;
-    });
+  $scope.swiped = function(direction) {
+    alert('Swiped ' + direction);
+  };
 
-    $scope.lorem = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
-        'Vel explicabo, aliquid eaque soluta nihil eligendi adipisci error, illum ' +
-        'corrupti nam fuga omnis quod quaerat mollitia expedita impedit dolores ipsam. Obcaecati.';
+  // User agent displayed in home page
+  $scope.userAgent = navigator.userAgent;
+
+  // Needed for the loading screen
+  $rootScope.$on('$routeChangeStart', function() {
+    $rootScope.loading = true;
+  });
+
+  $rootScope.$on('$routeChangeSuccess', function() {
+    $rootScope.loading = false;
+  });
+
+  // Fake text i used here and there.
+  $scope.lorem = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
+    'Vel explicabo, aliquid eaque soluta nihil eligendi adipisci error, illum ' +
+    'corrupti nam fuga omnis quod quaerat mollitia expedita impedit dolores ipsam. Obcaecati.';
 
     var scrollItems = [];
 
-    for (var i =1; i <= 100; i++){
-        scrollItems.push('Iten ' + i);
-    }
+  for (var i = 1; i <= 100; i++) {
+    scrollItems.push('Item ' + i);
+  }
 
-    $scope.bottomReached = function () {
-        alert('Congrats you scrolled to the end of the list!');
-    };
+  $scope.scrollItems = scrollItems;
+
+  $scope.bottomReached = function() {
+    alert('Congrats you scrolled to the end of the list!');
+  };
 
     $scope.chatUsers = [
         {name: 'Carlos Flowers', online: true},
@@ -243,9 +265,9 @@ app.controller('MainController',function ($rootScope, $scope) {
     $scope.rememberMe = true;
     $scope.email = 'jiaoxinagpo2007@gmail.com';
 
-    $scope.login = function () {
-        alert('You submiited the login form');
-    };
+  $scope.login = function() {
+    alert('You submitted the login form');
+  };
 
     $scope.notices = [];
 
@@ -263,7 +285,8 @@ app.controller('MainController',function ($rootScope, $scope) {
 
 app.controller('getModel', function ($scope, $http, $routeParams) {
     if ($routeParams.id) {
-        $http.get("resource/" + $routeParams.id + ".json")
+        var getNow = new Date().getTime();
+        $http.get("resource/" + $routeParams.id + ".json?_"+ getNow)
             .then(function (response) {
                 $scope.model = response.data;
             }, function (response) {
