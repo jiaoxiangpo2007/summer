@@ -233,13 +233,13 @@ app.controller('MainController', function($rootScope, $scope) {
   });
 
   // Fake text i used here and there.
-  $scope.lorem = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
+  $scope.lorem = 'L1orem ipsum dolor sit amet, consectetur adipisicing elit. ' +
     'Vel explicabo, aliquid eaque soluta nihil eligendi adipisci error, illum ' +
     'corrupti nam fuga omnis quod quaerat mollitia expedita impedit dolores ipsam. Obcaecati.';
 
     var scrollItems = [];
 
-  for (var i = 1; i <= 100; i++) {
+  for (var i = 1; i <= 20; i++) {
     scrollItems.push('Item ' + i);
   }
 

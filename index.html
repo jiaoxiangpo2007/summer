@@ -25,10 +25,7 @@
                 <i class="fa fa-bars"></i> Menu
             </div>
         </div>
-        <div class="btn-group pull-right" ui-yield-to="navbarAction">
-            <div ui-toggle="uiSidebarRight" class="btn sidebar-right-toggle">
-                <i class="fa fa-ellipsis-v"></i>
-            </div>
+        <div ui-yield-to="rightBar">
         </div>
     </div>
     <div class="app-body" ng-class="{loading: loading}">
@@ -40,6 +37,6 @@
         </div>
     </div>
 </div>
-<script src="js/myapp.js?213"></script>
+<script src="js/myapp.js"></script>
 </body>
 </html>
