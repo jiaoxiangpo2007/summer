@@ -266,7 +266,7 @@ app.controller('MainController', function($rootScope, $scope) {
     $scope.email = 'jiaoxinagpo2007@gmail.com';
 
   $scope.login = function() {
-    alert('You submitted the login form');
+    console.log("Click login Button");
   };
 
     $scope.notices = [];

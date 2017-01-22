@@ -2,18 +2,11 @@
     <div ui-content-for="title">
         <span>Scroll</span>
     </div>
-    <div ui-content-for="rightBar">
-        <div class="pull-right">
-            <a class="btn" ui-toggle="searchBar">
-                <i class="fa fa-search"></i>
-            </a>
-        </div>
-    </div>
     <input
-        ng-if="Ui.active('searchBar')"
-        type="search"
-        class="form-control scrollable-header"
-        placeholder="Search.." />
+            ng-if="Ui.active('searchBar')"
+            type="search"
+            class="form-control scrollable-header"
+            placeholder="Search.."/>
 
     <div class="scrollable-content" ui-scroll-bottom="bottomReached()">
         <div class="list-group">
@@ -29,4 +22,9 @@
         <span ui-show="searchBar">Hide</span>
         Search Bar
     </a>
+    <div ui-content-for="rightBar">
+            <a class="btn" ui-toggle="searchBar">
+                <i class="fa fa-search"></i>
+            </a>
+    </div>
 </div>
