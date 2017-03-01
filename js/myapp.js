@@ -239,15 +239,19 @@ app.controller('MainController', function($rootScope, $scope) {
 
     var scrollItems = [];
 
-  for (var i = 1; i <= 20; i++) {
-    scrollItems.push('Item ' + i);
+  for (var i = 1; i <= 10; i++) {
+    scrollItems.push('Item' + i);
   }
-
   $scope.scrollItems = scrollItems;
+      // [
+      // {number:"iPhone7",dir:"iphone7"},
+      // {number:"iPhone7 Plus",dir:"iphone7p"},
+      // {number:"Nexus 5", dir:"nexus5"}
+      // ];
 
-  $scope.bottomReached = function() {
-    alert('Congrats you scrolled to the end of the list!');
-  };
+  // $scope.bottomReached = function() {
+  //   alert('Congrats you scrolled to the end of the list!');
+  // };
 
     $scope.chatUsers = [
         {name: 'Carlos Flowers', online: true},
